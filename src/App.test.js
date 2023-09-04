@@ -20,3 +20,29 @@ test('button has correct initial color, and Updates when click', () => {
   // 버튼 내의 텍스트도 변경되어야 함.
   expect(colorBtn).toHaveTextContent('Change to red');
 });
+
+test('initial conditions', () => {
+  render(<App />);
+
+  const coloerBtn = screen.getByRole('button', { name: 'Change to blue' });
+  expect(coloerBtn).toBeEnabled();
+
+  const checkbox = screen.getByRole('checkbox');
+  expect(checkbox).not.toBeChecked(); // .not 을 이ㅇㅏ여 반ㅐㅗ도 실ㅇㅏ능
+});
+
+test('체크박스 on-off에 따른 버튼 활성화 체크', () => {
+  render(<App />);
+  const checkbox = screen.getByRole('checkbox');
+  const colorBtn = screen.getByRole('button');
+
+  // 초기에는 체크박스 비활성화 상태 -> 버튼은 활성화 되어야함
+  expect(colorBtn).toBeEnabled();
+
+  // 체크박스 활성화
+  fireEvent.click(checkbox);
+  expect(colorBtn).toBeDisabled();
+
+  fireEvent.click(checkbox);
+  expect(colorBtn).toBeEnabled();
+});
