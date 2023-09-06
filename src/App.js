@@ -12,7 +12,8 @@ function App() {
   return (
     <div>
       <button style={{ backgroundColor: colorFlag }} onClick={() => setBtnColor(!btnColor)} disabled={check}>{`Change to ${textFlag}`}</button>
-      <input type='checkbox' defaultChecked={check} onClick={(e) => setCheck(e.target.checked)} />
+      <input type='checkbox' id='disable-button-checkbox' defaultChecked={check} onClick={(e) => setCheck(e.target.checked)} />
+      <label htmlFor='disable-button-checkbox'>Disable button</label>
     </div>
   );
 }

@@ -27,7 +27,7 @@ test('initial conditions', () => {
   const coloerBtn = screen.getByRole('button', { name: 'Change to blue' });
   expect(coloerBtn).toBeEnabled();
 
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
   expect(checkbox).not.toBeChecked(); // .not 을 이ㅇㅏ여 반ㅐㅗ도 실ㅇㅏ능
 });
 
