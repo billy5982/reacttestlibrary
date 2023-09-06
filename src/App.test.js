@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-
+import { replaceCamelWithSpaces } from './App';
 // 초기 조건을 테스트  (버튼이 화면에 잘 나타나있는지)
 test('button has correct initial color, and Updates when click', () => {
   render(<App />);
@@ -70,4 +70,17 @@ test('체크박스 활성화 시 버튼의 백그라운드가 회색으로 변�
   // 버튼 -> 파랑색
   fireEvent.click(checkbox);
   expect(colorBtn).toHaveStyle({ backgroundColor: 'blue' });
+});
+
+//describe 문으로 test 묶기
+describe('spaces before camel-case capital letters', () => {
+  test('Works for no inner capital letters', () => {
+    expect(replaceCamelWithSpaces('Red')).toBe('Red');
+  });
+  test('Works for one inner capital letter', () => {
+    expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue');
+  });
+  test('Works for multiple inner capital letters', () => {
+    expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red');
+  });
 });
