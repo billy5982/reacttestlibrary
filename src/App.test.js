@@ -45,4 +45,29 @@ test('체크박스 on-off에 따른 버튼 활성화 체크', () => {
 
   fireEvent.click(checkbox);
   expect(colorBtn).toBeEnabled();
+
+  // 체크 박스 활성화 시 버튼이 회색이 되었으면 좋겠음. -> 활성한 후에는 원래 색깔이여야 함.
+});
+
+test('체크박스 활성화 시 버튼의 백그라운드가 회색으로 변경됩니다. 비활성화 시 기존 상태를 유지합니다', () => {
+  render(<App />);
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
+  const colorBtn = screen.getByRole('button', { name: 'Change to blue' });
+
+  // 활성화 시 그레이
+  fireEvent.click(checkbox);
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'gray' });
+
+  // 비활성화 시 원래 색(레드)
+  fireEvent.click(checkbox);
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'red' });
+
+  // 버튼 -> 파랑색 -> 체크 그레이
+  fireEvent.click(colorBtn);
+  fireEvent.click(checkbox);
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'gray' });
+
+  // 버튼 -> 파랑색
+  fireEvent.click(checkbox);
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'blue' });
 });
