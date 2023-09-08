@@ -18,7 +18,7 @@ test('button has correct initial color, and Updates when click', () => {
   expect(colorBtn).toHaveStyle({ backgroundColor: 'blue' });
 
   // 버튼 내의 텍스트도 변경되어야 함.
-  expect(colorBtn).toHaveTextContent('Change to red');
+  expect(colorBtn.textContent).toBe('Change to red');
 });
 
 test('initial conditions', () => {
